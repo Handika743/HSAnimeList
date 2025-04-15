@@ -13,6 +13,7 @@ const CommentInput = ({
 }) => {
   const [comment, setComment] = useState("");
   const [isCreated, setIsCreated] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const [rating, setRating] = useState(0);
 
@@ -24,6 +25,7 @@ const CommentInput = ({
     if (!comment.trim()) {
       return;
     }
+    setIsSubmitting(true);
     const data = {
       anime_mal_id,
       user_email,
@@ -67,6 +69,7 @@ const CommentInput = ({
           <button
             className="flex items-center justify-center bg-accent text-secondary font-bold w-fit p-2 m-2 rounded-md border border-secondary"
             onClick={handleCommentPosting}
+            disabled={isSubmitting}
           >
             Kirim <Send color="black" />
           </button>

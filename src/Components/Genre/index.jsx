@@ -2,7 +2,6 @@ import Loading from "@/app/loading";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Minus } from "lucide-react";
 import GenreBottom from "./bottom";
 
 const GenreList = ({ api }) => {
@@ -47,11 +46,9 @@ const GenreList = ({ api }) => {
             <div className="border-x border-gray-400 px-2">
               <p>{anime.status}</p>
             </div>
-            <div>
-              <p>
-                {anime.episodes ? anime.episodes : "?"} Eps,{" "}
-                {anime.duraion === "Unknown" ? anime.duration : "0 Min"}
-              </p>
+            <div className="flex gap-2">
+              <p>{anime.episodes ? anime.episodes + " Eps" : " ? Eps"},</p>
+              <p>{anime.duration === "Unknown" ? "N/A" : anime.duration}</p>
             </div>
           </div>
           <div className="flex justify-center gap-3 text-xs p-2">

@@ -4,7 +4,7 @@ import prisma from "@/libs/prisma";
 import AnimeDetailClient from "@/Components/Detail";
 
 const DetailPage = async ({ params }) => {
-  const { id } = params;
+  const { id } = await params;
   const response = await getAnimeResponse(`anime/${id}`);
   const detailAnime = response.data;
 

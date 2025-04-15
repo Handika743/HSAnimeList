@@ -44,10 +44,10 @@ const AnimeDetailClient = ({ detailAnime, user, id, collection }) => {
         {/* Info angka */}
         <div className="flex gap-2 overflow-x-auto">
           {[
-            { title: "PERINGKAT", value: detailAnime.rank },
-            { title: "SKOR", value: detailAnime.score },
-            { title: "FAVORITE", value: detailAnime.favorites },
-            { title: "EPISODE", value: detailAnime.episodes },
+            { title: "PERINGKAT", value: detailAnime.rank ?? "N/A" },
+            { title: "SKOR", value: detailAnime.score ?? "N/A" },
+            { title: "FAVORITE", value: detailAnime.favorites ?? "N/a" },
+            { title: "EPISODE", value: detailAnime.episodes ?? "N/A" },
           ].map((item) => (
             <div
               key={item.title}
@@ -80,28 +80,32 @@ const AnimeDetailClient = ({ detailAnime, user, id, collection }) => {
         {/* Durasi + Skor */}
         <div className="flex flex-col items-center rounded border border-color-accent p-2">
           <h3 className="font-bold">DURASI</h3>
-          <p>{detailAnime.duration}</p>
+          <p>
+            {detailAnime.duration === "Unknown" ? "N/A" : detailAnime.duration}
+          </p>
         </div>
         <div className="flex flex-col items-center rounded border border-color-accent p-2">
           <h3 className="font-bold">SKOR</h3>
           <div className="flex items-center gap-1">
             <Star size={19} className="text-accent fill-accent" />
-            <p>{detailAnime.score}</p>
+            <p>{detailAnime.score ? detailAnime.score : "N/A"}</p>
           </div>
         </div>
       </div>
 
       {/* Sinopsis */}
-      <div className="pt-4 px-4">
-        <p className="text-justify text-sm lg:text-lg md:text-md text-color-primary">
+      <div className="p-4 flex flex-col justify-center items-center">
+        <p className="text-justify text-sm lg:text-lg md:text-md text-color-primary max-w-5xl">
           {detailAnime.synopsis}
         </p>
       </div>
 
       {/* Komentar */}
-      <div className="pt-4 px-4 border border-primary m-2 max-h-[350px]">
+      <div className="p-4 border border-primary my-10 mx-4 max-h-[350px]">
         <h5 className="font-bold text-lg">Komentar :</h5>
-        <CommentBox anime_mal_id={id} />
+        <div className="max-h-[300px] overflow-y-auto">
+          <CommentBox anime_mal_id={id} />
+        </div>
       </div>
 
       {user && (
