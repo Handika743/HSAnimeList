@@ -2,7 +2,7 @@ import { authUserSession } from "@/libs/auth-libs";
 import prisma from "@/libs/prisma";
 import React from "react";
 import Link from "next/link";
-import Header from "@/components/Dashboard/Header";
+import Header from "@/Components/Dashboard/Header";
 import Image from "next/image";
 import { Star } from "lucide-react";
 
